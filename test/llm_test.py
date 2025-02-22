@@ -1,10 +1,6 @@
 import asyncio
 import unittest
-<<<<<<< HEAD:test/llm_test.py
 from speaking_script import ask_openai_async, load_config, create_aysnc_client
-=======
-from script1 import ask_openai_async, load_config, create_aysnc_client
->>>>>>> f918746 (1.0 speaker notes setting):llm_test.py
 
 class TestOpenAI(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
