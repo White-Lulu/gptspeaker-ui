@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings-OwO</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/setting.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <span class="emoji">🤓</span>
+        <div class="nav-links">
+            <a href="speaker.html" class="noactive-nav">Speaker</a>
+            <!-- <a href="news.html" class="noactive-nav">News</a> -->
+            <a href="notes.html" class="noactive-nav">Notes</a>
+            <a href="#" class="active-nav">Setting</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-column1">
+            <form id="style-settings">
+                <h1 style="text-align: center">Theme Setting</h1>
+                <label for="background-color">BackgroundColor:</label>
+                <input type="color" id="background-color" name="background-color" value="#f4f4f4">
+                <label for="main-color">MainColor:</label>
+                <input type="color" id="main-color" name="main-color" value="#000000">
+                <label for="sub-color">SubColor:</label>
+                <input type="color" id="sub-color" name="sub-color" value="#000000">
+                <label for="opacity">Opacity:</label>
+                <input type="range" id="opacity" name="opacity" min="0" max="1" step="0.05" value="1">
+                <button type="button" onclick="saveThemeSettings()">Save !</button>
+            </form>
+        </div>
+        <div class="right-column1">
+            <form>
+                <h1 style="text-align: center">Speaker Setting</h1>
+                <div class="input-group">
+                    <div class="input-group-item">
+                        <label for="chatname">ChatName:</label>
+                        <input type="text" id="chatname" name="chatname" value="😊">
+                    </div>
+                    <div class="input-group-item">
+                        <label for="username">UserName:</label>
+                        <input type="text" id="username" name="username" value="😎">
+                    </div>
+                </div>
+                <label for="voice">Voice:</label>
+                <select id="voice" name="voice" value="zh-CN-XiaochenNeural">
+                    <option value="zh-CN-XiaoxiaoNeural">[女]Xiaoxiao</option>
+                    <option value="zh-CN-YunxiNeural">[男]Yunxi</option>
+                    <option value="zh-CN-YunjianNeural">[男]Yunjian</option>
+                    <option value="zh-CN-XiaoyiNeural">[女]Xiaoyi</option>
+                    <option value="zh-CN-XiaochenNeural">[女]Xiaochen</option>
+                    <option value="zh-CN-guangxi-YunqiNeural">[男]广西</option>
+                    <option value="zh-CN-henan-YundengNeural">[男]中原</option>
+                    <option value="zh-CN-liaoning-XiaobeiNeural">[女]东北</option>
+                    <option value="zh-CN-liaoning-YunbiaoNeural">[男]东北</option>
+                    <option value="zh-CN-shaanxi-XiaoniNeural">[女]陕西</option>
+                    <option value="zh-CN-shandong-YunxiangNeural">[男]吉普</option>
+                    <option value="zh-CN-sichuan-YunxiNeural">[男]西南</option>
+                </select>
+                <label>DeepSeek Model:</label>
+                <select id="deepseekmodel" name="deepseekmodel" value="deepseek-chat">
+                    <option value="deepseek-chat">V3</option>
+                    <option value="deepseek-reasoner">R1</option>
+                </select>
+                <label>OpenAI Model:</label>
+                <select id="openaimodel" name="openaimodel" value="gpt-4o">
+                    <option value="gpt-4o-mini">gpt-4o-mini</option>
+                    <option value="gpt-4o">gpt-4o</option>
+                    <option value="o1-mini">o1-mini</option>
+                    <option value="o1-preview">o1-preview</option>
+                </select>
+                <button type="button" onclick="saveSpeakerSettings()">Save !</button>
+            </form>
+        </div>
+        <div class="right-column1">
+            <form>
+                <h1 style="text-align: center">Notes Setting</h1>
+                <label for="voice">Notes:</label>
+                <select id="note" name="note" value="">
+                    <option value="">O.o</option>
+                </select>
+                <button type="button" onclick="deletenotes()">Delete !</button>
+            </form>
+        </div>
+        <div class="right-column2"></div>
+    </div>
+    <script type="module">
+        import { SettingThemeManager } from 'http://localhost:5000/static/js/setting.js';
+        window.addEventListener('DOMContentLoaded', () => {
+            SettingThemeManager.applyTheme();
+        });
+        console.log("加载设置界面的 notes成功");
+    </script>
+    <script>
+        function saveThemeSettings() {
+            const backgroundColor = document.getElementById('background-color').value;
+            const mainColor = document.getElementById('main-color').value;
+            const subColor = document.getElementById('sub-color').value;
+            const opacity = document.getElementById('opacity').value;
+
+            localStorage.setItem('backgroundColor', backgroundColor);
+            localStorage.setItem('mainColor', mainColor);
+            localStorage.setItem('subColor', subColor);
+            localStorage.setItem('opacity', opacity);
+
+            alert('Settings saved!');
+        }
+
+        function saveSpeakerSettings() {
+            const voice = document.getElementById('voice').value;
+            const chatname = document.getElementById('chatname').value;
+            const username = document.getElementById('username').value;
+            const deepseekmodel = document.getElementById('deepseekmodel').value;
+            const openaimodel = document.getElementById('openaimodel').value;
+
+            localStorage.setItem('voice', voice);
+            localStorage.setItem('chatname', chatname);
+            localStorage.setItem('username', username);
+            localStorage.setItem('deepseekmodel', deepseekmodel);
+            localStorage.setItem('openaimodel', openaimodel);
+
+            alert('Settings saved!');
+        }
+
+        function deletenotes() {
+            const select = document.getElementById("note");
+            const selectedTitle = select.value;
+
+            if (selectedTitle === "") {
+                alert("O.o");
+                return;
+            }
+
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            const noteIndex = notes.findIndex(note => note.title === selectedTitle);
+
+            if (noteIndex !== -1) {
+                notes.splice(noteIndex, 1); 
+                localStorage.setItem("notes", JSON.stringify(notes));
+                localStorage.setItem("sortedNotes", JSON.stringify(notes));
+                alert("Successfully deleted !");
+                loadNotesForSettings();
+            } else {
+                alert("We can't find this note.");
+            }
+        }
+    </script>
+    <script>
+        async function sendSettings() {
+            try {
+                const voice = document.getElementById('voice').value.trim();
+                const chatname = document.getElementById('chatname').value.trim();
+                const username = document.getElementById('username').value.trim();
+                const deepseekmodel = document.getElementById('deepseekmodel').value.trim();
+                const openaimodel = document.getElementById('openaimodel').value.trim();
+
+                const response = await fetch('http://localhost:5000/submit_settings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        voice: voice,
+                        chatname: chatname,
+                        username: username,
+                        deepseekmodel: deepseekmodel,
+                        openaimodel: openaimodel
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Success:', data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to save settings:' + error.message);
+            }
+        }
+        
+        document.querySelector('button[onclick="saveSpeakerSettings()"]').addEventListener('click', function (event) {
+            event.preventDefault(); 
+            sendSettings(); 
+        });
+    </script>
+</body>
+</html>

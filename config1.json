@@ -1,0 +1,30 @@
+{
+    "General": {
+        "SystemPrompt": "请用简洁清晰、逻辑紧密的方式回答，不必书面化，不需要冗余修饰，像口头交流一样直接高效，信息密度要高，回答尽量简短。"
+    },
+    "AzureCognitiveServices": {
+        "Key": "",
+        "Region": "eastus",
+        "SpeechRecognitionLanguage": "zh-CN",
+        "SpeechSynthesisVoiceName": "zh-CN-sichuan-YunxiNeural",
+        "Rate": "+15%",
+        "WakePhraseModel": "xiaofan.table",
+        "WakeWord": "xiaofan tongxue",
+        "StopWord": "停止。"
+    },
+    "AzureOpenAI": {
+        "Key": "",
+        "api_version": "2024-02-01",
+        "Endpoint": "https://openaiapi000.openai.azure.com/",
+        "Model": "jack_wu_gpt-35-turbo-16k"
+    },
+    "OpenAI": {
+        "Key": "",
+        "Model": "deepseek-reasoner",
+        "ApiBase": "https://api.deepseek.com/v1",
+        "MaxTokens": 4096,
+        "Temperature": 0.7,
+        "FrequencyPenalty": 0,
+        "PresencePenalty": 0
+    }
+}

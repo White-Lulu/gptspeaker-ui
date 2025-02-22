@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#notes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.note-container {
+    flex: 1 1 calc(20% - 20px);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    min-width: 200px;
+}
+
+.note-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.note-content {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.note-date {
+    font-size: 12px;
+    color: #666;
+}

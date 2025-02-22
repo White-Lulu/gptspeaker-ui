@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes-OwO</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/notes.css">
+</head>
+<body>
+    <div class="navbar">
+        <span class="emoji">🧐</span>
+        <div class="nav-links">
+            <a href="speaker.html" class="noactive-nav">Speaker</a>
+            <!-- <a href="news.html" class="noactive-nav">News</a> -->
+            <a href="#" class="active-nav">Notes</a>
+            <a class="nav-links4" href="settings.html">Setting</a>
+        </div>
+    </div>
+     <div class="container">
+        <div id="notes-list"></div>
+    </div>
+    <script type="module">
+        import { NotesThemeManager } from 'http://localhost:5000/static/js/notes.js';
+        window.addEventListener('DOMContentLoaded', () => {
+            NotesThemeManager.applyTheme();
+        });
+    </script>
+</body>
+</html>
+

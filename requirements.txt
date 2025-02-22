@@ -1,4 +1,6 @@
 azure-cognitiveservices-speech
 openai
-Requests
 tiktoken
+psutil
+flask
+flask_cors

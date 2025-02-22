@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings-OwO</title>
+    <style>
+
+        .container {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+        padding: 20px;
+        min-height: 400px; /* 让整体区块更长 */
+        }  
+
+        .navbar {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px 20px;
+                    border-bottom:2px solid #ccc;
+                }
+
+        .emoji {
+            font-size: 24px; /* 表情大小 */
+            margin-right: 10px; /* 右侧间距 */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px; /* 文字块之间的间距 */
+        }
+
+        
+        .nav-links .noactive-nav {
+                border: 2px solid;  /* 添加边框 */
+                border-radius: 5px; /* 保持与其他按钮一致的圆角 */
+                color: black;       /* 保持文字颜色 */
+        }
+
+        .nav-links a {
+            text-decoration: none; /* 去掉超链接的下划线 */
+            color: black; /* 文字颜色 */
+            font-size: 16px;
+            padding: 5px 10px; /* 内边距 */
+        }
+
+        .nav-links4{
+            /* 只有最后一个有背景色 */
+            color:#ffffff;
+            border-radius: 5px; /* 让按钮圆角 */
+            border: 2px solid;  /* 添加边框 */
+            border-radius: 5px; /* 保持与其他按钮一致的圆角 */
+            color: rgb(255, 255, 255);       /* 保持文字颜色 */
+        }
+
+        /* 第一列（左侧） */
+        .left-column1 {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 580px;   /* 添加这行：限制最大高度 */
+            max-height: 580px;
+            border:2px solid #ccc;
+            border-radius: 5px;
+        }
+        .right-column1 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            min-height: 540px;
+            max-height: 580px;
+            border:2px solid #ccc;
+            border-radius: 5px;
+            
+        }
+        .right-column2 {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            min-height: 540px;
+            max-height: 580px;
+            border:2px solid #ccc;
+            border-radius: 5px;
+            
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 1px;
+        }
+
+        .input-group-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group-item label {
+            margin-bottom: 11px;
+        }
+
+        .input-group-item input {
+            width: 100%;
+            min-height: 38px;
+            box-sizing: border-box;
+        }
+
+        form {
+            min-width: 200px; /* 设置表单最大宽度 */
+            margin: 20px auto; /* 居中，两边自动分配 margin，上方留 40px 距离 */
+            border-radius: 10px;
+        }
+
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            border:2px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+        option:hover {
+            background-color:#ccc; /*var(--main-color); /* 使用 CSS 变量 */
+            color: rgb(0, 0, 0); /* 悬停选项的文本颜色 */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 35px;
+            margin-bottom: 20px;
+            border:2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="color"] {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 22px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 37px;
+            accent-color: var(--main-color); /* 使用CSS变量控制颜色 */
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span class="emoji">😊</span> <!-- 左侧表情 -->
+        <div class="nav-links">
+            <a href="speaker.html" class="noactive-nav">Speaker</a>
+            <a href="news.html" class="noactive-nav">News</a>
+            <a href="notes.html" class="noactive-nav">Notes</a>
+            <a href="#" class="nav-links4">Setting</a> <!-- 最后一个有底色 -->
+        </div>
+    </div>
+    <!-- 主容器：包含两列 -->
+    <div class="container">
+        <!-- 第一列（左侧大区块） -->
+        <div class="left-column1">
+        <form id="style-settings">
+            <h1 style="text-align: center">Theme Setting</h1>
+            <label for="background-color">BackgroundColor:</label>
+            <input type="color" id="background-color" name="background-color" value="#f4f4f4">
+
+            <label for="main-color">MainColor:</label>
+            <input type="color" id="main-color" name="main-color" value="#000000">
+
+            <label for="sub-color">SubColor:</label>
+            <input type="color" id="sub-color" name="sub-color" value="#000000">
+
+            <label for="opacity">Opacity:</label>
+            <input type="range" id="opacity" name="opacity" min="0" max="1" step="0.05" value="1">
+
+            <button type="button" onclick="saveSettings()">Save !</button>
+        </form>
+        </div>
+
+        <!-- 第二列（右侧包含两行区块） -->
+        <div class="right-column1">
+        <form>
+            <h1 style="text-align: center">Speaker Setting</h1>
+            <div class="input-group">
+                <div class="input-group-item">
+                    <label for="chatname">ChatName:</label>
+                    <input type="text" id="chatname" name="chatname" value="😊">
+                </div>
+                <div class="input-group-item">
+                    <label for="username">UserName:</label>
+                    <input type="text" id="username" name="username" value="😎">
+                </div>
+            </div>
+            <label for="voice">Voice:</label>
+            <select id="voice" name="voice" value="zh-CN-XiaoxiaoNeural">
+                <option value="zh-CN-XiaoxiaoNeural">[女]Xiaoxiao</option>
+                <option value="zh-CN-YunxiNeural">[男]Yunxi</option>
+                <option value="zh-CN-YunjianNeural">[男]Yunjian</option>
+                <option value="zh-CN-XiaoyiNeural">[女]Xiaoyi</option>
+                <option value="zh-CN-XiaochenNeural">[女]Xiaochen</option>
+                <option value="zh-CN-guangxi-YunqiNeural">[男]广西</option>
+                <option value="zh-CN-henan-YundengNeural">[男]中原</option>
+                <option value="zh-CN-liaoning-XiaobeiNeural">[女]东北</option>
+                <option value="zh-CN-liaoning-YunbiaoNeural">[男]东北</option>
+                <option value="zh-CN-shaanxi-XiaoniNeural">[女]陕西</option>
+                <option value="zh-CN-shandong-YunxiangNeural">[男]吉普</option>
+                <option value="zh-CN-sichuan-YunxiNeural">[男]西南</option>
+            </select>
+            
+            <label>DeepSeek Model:</label>
+            <select id="deepseekmodel" name="deepseekmodel" value="deepseek-chat">
+                <option value="deepseek-chat">V3</option>
+                <option value="deepseek-reasoner">R1</option>
+            </select>
+
+            <label>OpenAI Model:</label>
+            <select id="openaimodel" name="openaimodel" value="gpt-4o">
+                <option value="gpt-4o-mini">gpt-4o-mini</option>
+                <option value="gpt-4o">gpt-4o</option>
+                <option value="o1-mini">o1-mini</option>
+                <option value="o1-preview">o1-preview</option>
+            </select>
+            <button type="button" onclick="saveSettings1()">Save !</button>
+        </form>
+        </div>
+        <div class="right-column1">
+            <form>
+                <h1 style="text-align: center">Notes Setting</h1>
+                <label for="voice">Notes:</label>
+                <select id="note" name="note" value="">
+                    <option value="">O.o</option>
+                </select>
+                <button type="button" onclick="deletenotes()">Delete !</button>
+            </form>
+        </div>    
+        <div class="right-column2"></div>
+    </div>
+    <script>
+    
+    function saveSettings() {
+    const backgroundColor = document.getElementById('background-color').value;
+    const mainColor = document.getElementById('main-color').value;
+    const subColor = document.getElementById('sub-color').value;
+    const opacity = document.getElementById('opacity').value;
+
+    // 保存设置到 localStorage
+    localStorage.setItem('backgroundColor', backgroundColor);
+    localStorage.setItem('mainColor', mainColor);
+    localStorage.setItem('subColor', subColor);
+    localStorage.setItem('opacity', opacity);
+
+    alert('Settings saved!');
+}
+
+    function saveSettings1() {
+        const voice = document.getElementById('voice').value;
+        const chatname = document.getElementById('chatname').value;
+        const username = document.getElementById('username').value;
+        const deepseekmodel = document.getElementById('deepseekmodel').value;
+        const openaimodel = document.getElementById('openaimodel').value;
+
+        // 保存设置到 localStorage
+        localStorage.setItem('voice',voice);
+        localStorage.setItem('chatname', chatname);
+        localStorage.setItem('username', username);
+        localStorage.setItem('deepseekmodel', deepseekmodel);
+        localStorage.setItem('openaimodel', openaimodel);
+
+        alert('Settings saved!');
+    }
+    
+    function loadNotesForSettings() {
+    console.log("加载设置界面的 notes");
+    const notes = JSON.parse(localStorage.getItem("sortedNotes")) || [];
+    const select = document.getElementById("note");
+
+    select.innerHTML = '<option value="">O.o</option>';
+
+    notes.forEach((note, index) => {
+        const option = document.createElement("option");
+        option.value = `${note.title}`;
+        option.textContent = `${note.title}`;
+        select.appendChild(option);
+    });
+}
+
+        // **3. 删除选中的 Note**
+        function deletenotes() {
+    const select = document.getElementById("note");
+    const selectedTitle = select.value;
+
+    if (selectedTitle === "") {
+        alert("O.o");
+        return;
+    }
+
+    let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    // 根据标题查找并删除笔记
+    const noteIndex = notes.findIndex(note => note.title === selectedTitle);
+    
+    if (noteIndex !== -1) {
+        notes.splice(noteIndex, 1); // 删除找到的笔记
+        
+        // 更新 localStorage
+        localStorage.setItem("notes", JSON.stringify(notes));
+        localStorage.setItem("sortedNotes", JSON.stringify(notes));
+
+        alert("Successfully deleted !");
+        loadNotesForSettings(); // 重新加载下拉框
+    } else {
+        alert("We can't find this note.");
+    }
+}
+    function applyMainColor(color) {
+        document.documentElement.style.setProperty('--main-color', color);
+    }
+
+    window.onload = function() {
+
+    const savedBackgroundColor = localStorage.getItem('backgroundColor') || '#f4f4f4';
+    const savedMainColor = localStorage.getItem('mainColor') || '#447de18f';
+    const savedSubColor = localStorage.getItem('subColor') || '#ccc';
+    const savedOpacity = localStorage.getItem('opacity') || '1'; // 读取透明度
+
+    // 从 localStorage 中读取保存的值
+    const savedVoice = localStorage.getItem('voice') || 'zh-CN-XiaoxiaoNeural';
+    const savedChatname = localStorage.getItem('chatname') || '😊';
+    const savedUsername = localStorage.getItem('username') || '😎'; 
+    const savedDeepseekmodel = localStorage.getItem('deepseekmodel') || 'v3';
+    const savedOpenaimodel = localStorage.getItem('openaimodel') || 'gpt-4o';
+
+    // 将保存的值应用到表单元素中
+    document.getElementById('voice').value = savedVoice;
+    document.getElementById('chatname').value = savedChatname;
+    document.getElementById('username').value = savedUsername;
+    document.getElementById('deepseekmodel').value = savedDeepseekmodel;
+    document.getElementById('openaimodel').value = savedOpenaimodel;
+    
+    document.getElementById('main-color').value = savedMainColor;
+    applyMainColor(savedMainColor);
+
+    document.getElementById('main-color').addEventListener('input', function () {
+    applyMainColor(this.value);
+    });
+
+    // 应用背景色
+    document.body.style.backgroundColor = savedBackgroundColor;
+    document.querySelectorAll('.noactive-nav').forEach(a => {
+        a.style.borderColor = savedBackgroundColor;
+    });
+    // 应用主色到所有按钮
+    document.querySelectorAll('button').forEach(button => {
+        button.style.backgroundColor = savedMainColor;
+    });
+
+    // 应用辅助色
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.style.borderColor = savedSubColor;
+    });
+    document.querySelectorAll('select').forEach(select => {
+        select.style.borderColor = savedSubColor;
+    });
+    document.querySelector('.left-column1').style.borderColor = savedSubColor;
+    document.querySelectorAll('.right-column1').forEach(div => {
+        div.style.borderColor = savedSubColor;});
+    document.querySelector('.navbar').style.borderBottomColor = savedSubColor;
+    document.querySelector('.nav-links4').style.backgroundColor = savedSubColor;
+    document.querySelector('.nav-links4').style.borderColor = savedSubColor;
+
+    // **同步更新 input 颜色选择框的值**
+    document.getElementById('background-color').value = savedBackgroundColor;
+    document.getElementById('main-color').value = savedMainColor;
+    document.getElementById('sub-color').value = savedSubColor;
+
+     // **实时监听透明度调整**
+     document.getElementById('opacity').addEventListener('input', function() {
+        applyOpacity(this.value);
+    });
+
+    // 计算背景颜色亮度并调整字体颜色
+    document.querySelector('.nav-links4').style.color = getContrastColor(savedSubColor);
+    
+    // 应用透明度
+    applyOpacity(savedOpacity);
+
+     // 绑定滑动条事件，使用户调整时实时生效
+     document.getElementById('opacity').addEventListener('input', function() {
+        applyOpacity(this.value);
+    });
+
+    // 设置滑动条的值为保存的透明度
+    document.getElementById('opacity').value = savedOpacity;
+
+    // 添加这一行来加载笔记列表
+    loadNotesForSettings();
+};
+
+// 应用透明度
+function applyOpacity(opacity) {
+    document.querySelectorAll('input,select').forEach(el => {
+        // 先获取原始背景颜色
+        let bgColor = window.getComputedStyle(el).backgroundColor;
+        let rgbaColor = convertToRGBA(bgColor, opacity);
+        el.style.backgroundColor = rgbaColor;
+    });
+}
+
+// 颜色转换函数：将 `rgb(r, g, b)` 或 `#xxxxxx` 转换为 `rgba(r, g, b, opacity)`
+function convertToRGBA(color, opacity) {
+    let r, g, b;
+    
+    if (color.startsWith("rgb")) {
+        // 解析 `rgb(r, g, b)` 形式
+        let rgbValues = color.match(/\d+/g);
+        r = parseInt(rgbValues[0]);
+        g = parseInt(rgbValues[1]);
+        b = parseInt(rgbValues[2]);
+    } else if (color.startsWith("#")) {
+        // 解析 `#RRGGBB` 形式
+        let hex = color.replace("#", "");
+        if (hex.length === 3) {
+            hex = hex.split("").map(c => c + c).join("");
+        }
+        r = parseInt(hex.substring(0, 2), 16);
+        g = parseInt(hex.substring(2, 4), 16);
+        b = parseInt(hex.substring(4, 6), 16);
+    } else {
+        // 默认返回白色
+        return `rgba(255, 255, 255, ${opacity})`;
+    }
+    
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+// 计算颜色亮度并返回合适的对比色
+function getContrastColor(hexColor) {
+    // 确保 hexColor 是 #RRGGBB 形式
+    hexColor = hexColor.replace(/^#/, '');
+    if (hexColor.length === 3) {
+        hexColor = hexColor.split('').map(c => c + c).join('');
+    }
+
+    // 解析 RGB 值
+    let r = parseInt(hexColor.substring(0, 2), 16) / 255;
+    let g = parseInt(hexColor.substring(2, 4), 16) / 255;
+    let b = parseInt(hexColor.substring(4, 6), 16) / 255;
+
+    // 计算相对亮度（符合 W3C WCAG 标准）
+    let luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+    // 亮度较高（背景较浅），用黑色；亮度较低（背景较深），用白色
+    return luminance > 0.5 ? '#000000' : '#ffffff';
+
+};
+</script>
+<script>
+async function sendSettings() {
+    try {
+        // 获取表单数据
+        const voice = document.getElementById('voice').value.trim();
+        const chatname = document.getElementById('chatname').value.trim();
+        const username = document.getElementById('username').value.trim();
+        const deepseekmodel = document.getElementById('deepseekmodel').value.trim();
+        const openaimodel = document.getElementById('openaimodel').value.trim();
+
+        // 发送 POST 请求
+        const response = await fetch('http://localhost:5000/submit_settings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                voice: voice,
+                chatname: chatname,
+                username: username,
+                deepseekmodel: deepseekmodel,
+                openaimodel: openaimodel
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Success:', data);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('设置更新失败：' + error.message);
+    }
+}
+
+// 绑定按钮点击事件
+document.querySelector('button[onclick="saveSettings1()"]').addEventListener('click', function(event) {
+    event.preventDefault(); // 阻止表单默认提交行为
+    sendSettings(); // 调用发送请求的函数
+});
+    </script>
+</body>
+</html>
