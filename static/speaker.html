@@ -10,16 +10,20 @@
 </head>
 <body>
     <div class="navbar">
-        <span class="emoji">😊</span>
+        <span class="emoji">😊</span> <!-- 左侧表情 -->
         <div class="nav-links">
             <a href="#" class="active-nav">Speaker</a>
             <!-- <a href="news.html" class="noactive-nav">News</a> -->
             <a href="notes.html" class="noactive-nav">Notes</a>
-            <a class="nav-links4" href="settings.html">Setting</a>
+            <a class="nav-links4" href="settings.html">Setting</a> <!-- 最后一个有底色 -->
         </div>
     </div>
+    <!-- 主容器：包含两列 -->
     <div class="container">
+        <!-- 第一列（左侧大区块） -->
         <div class="left-column" id="file-content">Waiting for submit</div>
+
+        <!-- 第二列（右侧包含两行区块） -->
         <div class="right-column">
             <div class="right-top">
                 <textarea class="prompt-input" placeholder="Here's your prompt"></textarea>
@@ -52,18 +56,22 @@
     </script>
 
     <script>
-        let selectedButton = null;
+        let selectedButton = null; // 记录当前选中的按钮
 
         function toggleButtonBorder(button) {
             if (selectedButton === button) {
-                button.innerText = button.innerText.replace(" √", "");
+                // 取消选中，移除 √
+                button.innerText = button.innerText.replace(" √", ""); // 移除 √
                 selectedButton = null;
             } else {
+                // 先清除其他按钮的 √
                 document.querySelectorAll(".deepseek-btn, .openai-btn").forEach(btn => {
-                    btn.innerText = btn.innerText.replace(" √", "");
+                    btn.innerText = btn.innerText.replace(" √", ""); // 移除 √
                 });
 
-                button.innerText = button.innerText + " √"; 
+                // 选中当前按钮，添加 √
+                button.innerText = button.innerText + " √"; // 添加 √
+                selectedButton = button;
             }
         }
 
@@ -75,6 +83,7 @@
             toggleButtonBorder(this);
         });
 
+        // 发送数据到服务器
         async function submitPrompt() {
             const promptText = document.querySelector(".prompt-input").value.trim();
             if (!promptText) {
@@ -92,12 +101,13 @@
 
             async function runScript() {
                 try {
+                    // 使用完整的服务器URL
                     const response = await fetch(`http://localhost:5000/submit_model_prompt`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
-
+                        // 添加请求体，传递prompt内容
                         body: JSON.stringify({
                             model: selectedModel,
                             prompt: document.querySelector(".prompt-input").value.trim()
@@ -130,20 +140,26 @@
                 return;
             }
 
+            // 获取当前日期
             const date = new Date().toLocaleString();
 
+            // 创建 note 对象
             const note = {
                 title,
                 content,
                 date
             };
 
+            // 从 localStorage 中读取现有的 notes
             const notes = JSON.parse(localStorage.getItem("notes")) || [];
 
+            // 添加新的 note
             notes.push(note);
 
+            // 保存到 localStorage
             localStorage.setItem("notes", JSON.stringify(notes));
 
+            // 清空输入框
             document.querySelector(".single-line-input").value = "";
             document.querySelector(".multi-line-input").value = "";
 
@@ -151,6 +167,7 @@
         });
 
         document.querySelector(".action-btn1").addEventListener("click", function () {
+            // 清空输入框
             document.querySelector(".single-line-input").value = "";
             document.querySelector(".multi-line-input").value = "";
 
@@ -171,8 +188,10 @@
             }
         }
 
+        // 每 2 秒更新一次
         setInterval(updateFileContent, 2000);
 
+        // 页面加载时立即更新
         updateFileContent();
     </script>
 </body>
