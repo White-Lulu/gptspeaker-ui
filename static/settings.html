@@ -94,7 +94,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             SettingThemeManager.applyTheme();
         });
-        console.log("加载设置界面的 notes成功");
     </script>
     <script>
         function saveThemeSettings() {
@@ -140,7 +139,7 @@
             const noteIndex = notes.findIndex(note => note.title === selectedTitle);
 
             if (noteIndex !== -1) {
-                notes.splice(noteIndex, 1); 
+                notes.splice(noteIndex, 1);
                 localStorage.setItem("notes", JSON.stringify(notes));
                 localStorage.setItem("sortedNotes", JSON.stringify(notes));
                 alert("Successfully deleted !");
@@ -184,11 +183,12 @@
                 alert('Failed to save settings:' + error.message);
             }
         }
-        
+
         document.querySelector('button[onclick="saveSpeakerSettings()"]').addEventListener('click', function (event) {
-            event.preventDefault(); 
-            sendSettings(); 
+            event.preventDefault();
+            sendSettings();
         });
     </script>
 </body>
+
 </html>

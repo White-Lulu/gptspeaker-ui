@@ -4,17 +4,14 @@
     margin-top: 20px;
     padding: 20px;
     min-height: 400px;
-    /* 让整体区块更长 */
 }
 
-/* 第一列（左侧） */
 .left-column1 {
     flex: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
     min-height: 580px;
-    /* 添加这行：限制最大高度 */
     max-height: 580px;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -70,9 +67,7 @@
 
 form {
     min-width: 200px;
-    /* 设置表单最大宽度 */
     margin: 20px auto;
-    /* 居中，两边自动分配 margin，上方留 40px 距离 */
     border-radius: 10px;
 }
 

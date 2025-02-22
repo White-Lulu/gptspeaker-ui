@@ -44,12 +44,13 @@ export class SettingThemeManager {
                 });
             }
         });
+        
         document.querySelectorAll('input[type="text"]',
             'select',
             '.left-column1',
             '.right-column1').forEach(a => {
-            a.style.borderColor = theme.subColor;
-        });
+                a.style.borderColor = theme.subColor;
+            });
 
         document.getElementById('background-color').value = theme.backgroundColor;
         document.getElementById('main-color').value = theme.mainColor;
@@ -62,7 +63,7 @@ export class SettingThemeManager {
         });
 
         document.getElementById('opacity').value = theme.opacity;
-        applyOpacity(theme.opacity,'input,select');
+        applyOpacity(theme.opacity, 'input,select');
         const notes = JSON.parse(localStorage.getItem("sortedNotes")) || [];
         const select = document.getElementById("note");
 

@@ -1,4 +1,4 @@
-import { ThemeManager,applyOpacity } from './utils.js';
+import { ThemeManager, applyOpacity } from './utils.js';
 
 export class NotesThemeManager {
     static getNotesTheme() {
@@ -15,62 +15,55 @@ export class NotesThemeManager {
 
         const theme = this.getNotesTheme();
 
-        console.log("loadNotes called"); // 调试信息
-    const notesList = document.getElementById("notes-list");
-    const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    console.log("Notes data:", notes); // 打印 notes 数据
+        console.log("loadNotes called");
+        const notesList = document.getElementById("notes-list");
+        const notes = JSON.parse(localStorage.getItem("notes")) || [];
+        console.log("Notes data:", notes);
 
-    // 按时间倒序排列
-    notes.sort((a, b) => new Date(b.date) - new Date(a.date));
+        notes.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // 清空现有内容
-    notesList.innerHTML = "";
 
-    // 如果没有 notes 数据，显示提示信息
-    if (notes.length === 0) {
-        notesList.innerHTML = "<p>No notes found.</p>";
-        return;
-    }
+        notesList.innerHTML = "";
 
-    // 遍历 notes 数据并展示
-    notes.forEach(note => {
-        if (!note.title || !note.content || !note.date) {
-            console.error("Invalid note format:", note); // 打印错误格式
+        if (notes.length === 0) {
+            notesList.innerHTML = "<p>No notes found.</p>";
             return;
         }
 
-        const noteDiv = document.createElement("div");
-        noteDiv.className = "note-container";
+        notes.forEach(note => {
+            if (!note.title || !note.content || !note.date) {
+                console.error("Invalid note format:", note);
+                return;
+            }
 
-        // 设置初始背景色
-        noteDiv.style.backgroundColor = "#f9f9f9"; // 默认背景色
+            const noteDiv = document.createElement("div");
+            noteDiv.className = "note-container";
 
-        // 设置 borderColor
-        noteDiv.style.borderColor = localStorage.getItem('subColor') || '#ccc';
+            noteDiv.style.backgroundColor = "#f9f9f9";
 
-        const title = document.createElement("div");
-        title.className = "note-title";
-        title.textContent = note.title;
+            noteDiv.style.borderColor = localStorage.getItem('subColor') || '#ccc';
 
-        const content = document.createElement("div");
-        content.className = "note-content";
-        content.textContent = note.content;
+            const title = document.createElement("div");
+            title.className = "note-title";
+            title.textContent = note.title;
 
-        const date = document.createElement("div");
-        date.className = "note-date";
-        date.textContent = `Date: ${note.date}`;
+            const content = document.createElement("div");
+            content.className = "note-content";
+            content.textContent = note.content;
 
-        noteDiv.appendChild(title);
-        noteDiv.appendChild(content);
-        noteDiv.appendChild(date);
+            const date = document.createElement("div");
+            date.className = "note-date";
+            date.textContent = `Date: ${note.date}`;
 
-        notesList.appendChild(noteDiv);
-    });
+            noteDiv.appendChild(title);
+            noteDiv.appendChild(content);
+            noteDiv.appendChild(date);
 
-    // 应用透明度
-    applyOpacity(theme.opacity, ".note-container");
+            notesList.appendChild(noteDiv);
+        });
 
-    // 存储排序后的 notes（带序号）到 localStorage，供 `settings.html` 使用
-    localStorage.setItem("sortedNotes", JSON.stringify(notes));
+        applyOpacity(theme.opacity, ".note-container");
+
+        localStorage.setItem("sortedNotes", JSON.stringify(notes));
     }
 }

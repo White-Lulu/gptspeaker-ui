@@ -1,12 +1,12 @@
 // Service Worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('http://localhost:5000/static/js/service-worker.js',{ scope: '/static/js/' })
-    .then(registration => {
-        console.log('Service Worker done:', registration);
-    })
-    .catch(error => {
-        console.log('Failed to set Service Worker:', error);
-    });
+    navigator.serviceWorker.register('http://localhost:5000/static/js/service-worker.js', { scope: '/static/js/' })
+        .then(registration => {
+            console.log('Service Worker done:', registration);
+        })
+        .catch(error => {
+            console.log('Failed to set Service Worker:', error);
+        });
 }
 
 export class ThemeManager {
@@ -21,7 +21,7 @@ export class ThemeManager {
 
     static applyTheme() {
         const theme = this.getDefaultTheme();
-        
+
         // Apply background color
         document.body.style.backgroundColor = theme.backgroundColor;
         document.querySelectorAll('.noactive-nav').forEach(a => {
@@ -40,13 +40,13 @@ export class ThemeManager {
             navLink4.style.borderColor = theme.subColor;
             navLink4.style.color = getContrastColor(theme.subColor);
         }
-       
+
         return theme;
     }
 
     static convertToRGBA(color, opacity) {
         let r, g, b;
-        
+
         if (color.startsWith("rgb")) {
             let rgbValues = color.match(/\d+/g);
             r = parseInt(rgbValues[0]);
@@ -63,7 +63,7 @@ export class ThemeManager {
         } else {
             return `rgba(255, 255, 255, ${opacity})`;
         }
-        
+
         return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     }
 }

@@ -1,6 +1,6 @@
 @echo off
 if not exist server.pid (
-    echo server.pid 文件不存在，服务器可能未启动。
+    echo server.pid No file exits.
     exit
 )
 

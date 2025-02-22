@@ -69,7 +69,7 @@ def load_config():
     try:
         with open(config_file, encoding='utf-8') as f:
             config = json.load(f, object_hook=lambda d: namedtuple('X', d.keys())(*d.values())) 
-            if not config.AzureCognitiveServices.Key or not config.AzureCognitiveServices.Region or (not config.OpenAI.Key and not config.AzureOpenAI.Key): # 至少需要azure的key，region，openai的key或者azureopenai的key
+            if not config.AzureCognitiveServices.Key or not config.AzureCognitiveServices.Region or (not config.OpenAI.Key and not config.AzureOpenAI.Key):
                 with open("output.txt", "a", encoding="utf-8") as file:
                     file.write("Missing required configuration.\n")
                 raise ValueError("Missing required configuration.")
