@@ -33,12 +33,24 @@
     flex: 2;
     display: flex;
     flex-direction: column;
-    padding: 40px;
-    min-height: 540px;
-    max-height: 580px;
+    min-height: 620px;
+    max-height: 620px;
     border: 2px solid #ccc;
     border-radius: 5px;
+    align-items: center;
+    justify-content: center; /* 垂直居中 */
+    overflow: hidden; /* 防止图片超出容器 */
+}
 
+#displayed-image {
+    width: 100%; /* 宽度填充容器 */
+    height: 100%; /* 高度填充容器 */
+    object-fit: cover; /* 保持宽高比，填充容器 */
+    border-radius: 5px; /* 圆角 */
+}
+
+#image-upload {
+    display: none; /* 隐藏文件选择器 */
 }
 
 .input-group {

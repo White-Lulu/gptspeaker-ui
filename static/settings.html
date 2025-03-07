@@ -87,12 +87,23 @@
                 <button type="button" onclick="deletenotes()">Delete !</button>
             </form>
         </div>
-        <div class="right-column2"></div>
+        <div class="right-column2">
+            <label for="image-upload" style="cursor: pointer;">
+                <img id="displayed-image" src="/image/IMG_2668.jpg" alt="Displayed Image">
+            </label>
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+        </div>
     </div>
     <script type="module">
         import { SettingThemeManager } from 'http://localhost:5000/static/js/setting.js';
         window.addEventListener('DOMContentLoaded', () => {
             SettingThemeManager.applyTheme();
+        });
+        window.addEventListener('load', function () {
+            const savedImage = localStorage.getItem('user-selected-image');
+            if (savedImage) {
+                document.getElementById('displayed-image').src = savedImage;
+            }
         });
     </script>
     <script>
@@ -187,6 +198,20 @@
         document.querySelector('button[onclick="saveSpeakerSettings()"]').addEventListener('click', function (event) {
             event.preventDefault();
             sendSettings();
+        });
+    </script>
+    <script>
+        document.getElementById('image-upload').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageDataURL = e.target.result;
+                document.getElementById('displayed-image').src = imageDataURL;
+                localStorage.setItem('user-selected-image', imageDataURL);
+            };
+            reader.readAsDataURL(file);
+            }
         });
     </script>
 </body>
